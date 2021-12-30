@@ -1,11 +1,21 @@
-import { Box, CircularProgress } from '@material-ui/core';
+import { Box, CircularProgress, Grid, makeStyles } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import PokemonCard from '../components/PokemonCard';
 import { IMAGE_API_URL, POKEMON_API_URL } from '../config';
 
-function Pokedex() {
+const useStyles = makeStyles(theme => ({
+    pokedexContainer: {
+        textAlign: 'center',
+        padding: "80px 10px 0px 10px",
+        backgroundColor: 'rgb(68, 68, 68)'
+    }
+}))
 
+
+function Pokedex() {
     const [pokemonData, setPokemonData] = useState(null)
+    const classes = useStyles()
 
     useEffect(() => {
         axios.get(POKEMON_API_URL + "?limit=800")
@@ -29,9 +39,21 @@ function Pokedex() {
 
     return (
         <Box>
-            {pokemonData ? pokemonData.map(pokemon => {
-                return <h1 key={pokemon.id}>{pokemon.name}</h1>
-            }) : <CircularProgress style={{marginTop: 100}}   />}
+            {pokemonData ? 
+            
+            <Grid className={classes.pokedexContainer} container spacing={2}>
+                {pokemonData.map(pokemon => {
+                    return (
+                        <PokemonCard 
+                            key={pokemon.id}
+                            pokemon={pokemon}
+                            image={pokemon.url}
+                        />
+                    )
+                })}
+            </Grid>
+
+            : <CircularProgress style={{marginTop: 100}}   />}
         </Box>
         
     );
