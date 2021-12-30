@@ -18,7 +18,7 @@ function Pokedex() {
     const classes = useStyles()
 
     useEffect(() => {
-        axios.get(POKEMON_API_URL + "?limit=800")
+        axios.get(POKEMON_API_URL + "?limit=850")
              .then((response) => {
                  if (response.status >= 200 && response.status < 300) {
                      const { results } = response.data

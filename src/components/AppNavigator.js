@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'black'
     },
     link: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        marginRight: 15
     },
     title: {
         cursor: 'pointer',
@@ -25,6 +26,9 @@ function AppNavigator() {
             <Toolbar>
                 <Link to="/" className={classes.link}>
                     <Typography className={classes.title} variant="h6">Pokedex</Typography>
+                </Link>
+                <Link to="/favourites" className={classes.link}>
+                    <Typography className={classes.title} variant="h6">Favourites</Typography>
                 </Link>
             </Toolbar>
         </AppBar>

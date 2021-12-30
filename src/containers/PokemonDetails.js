@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "Fantasy"
     },
     pokemonImage: {
-        width: "170px",
-        height: "170px"
+        width: "250px",
+        height: "250px"
     },
     pokemonInfoContainer: {
         bottom: 60,
@@ -40,7 +40,8 @@ const useStyles = makeStyles(theme => ({
         marginTop: 15
     },
     text: {
-        fontSize:30
+        fontSize:30,
+        textTransform: "capitalize"
     }
 })) 
 

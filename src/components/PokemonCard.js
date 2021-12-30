@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     },
     link: {
         textDecoration: 'none'
+    },
+    text: {
+        textTransform: "capitalize"
     }
 }))
 
@@ -34,7 +37,7 @@ const PokemonCard = (props) => {
                 <Card className={classes.card}>
                     <CardMedia className={classes.cardMedia} image={image} />
                     <CardContent className={classes.cardContent}>
-                        <Typography>
+                        <Typography className={classes.text}>
                             {name}
                         </Typography>
                     </CardContent>
