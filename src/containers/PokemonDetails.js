@@ -4,6 +4,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { POKEMON_API_URL } from '../config';
+import { connect } from 'react-redux';
+import { toggleFavourite } from '../redux/actions';
 
 const useStyles = makeStyles(theme => ({
     pokedexContainer: {
@@ -42,7 +44,8 @@ const useStyles = makeStyles(theme => ({
     }
 })) 
 
-const PokemonDetails = () => {
+const PokemonDetails = (props) => {
+    const {favourites, toggleFavourites} = props
     let { id } = useParams();
     const classes = useStyles()
     const [pokemonData, setPokemonData] = useState(null)
@@ -56,6 +59,10 @@ const PokemonDetails = () => {
         })
     }, [id])
 
+    const favChecker = (pokemon) => {
+        return favourites.find((actualPokemon) => actualPokemon.id === pokemon.id)
+    }
+
     return pokemonData ? (
         <Box>
             <Box className={classes.pokedexContainer}>
@@ -67,8 +74,8 @@ const PokemonDetails = () => {
                     <hr className={classes.separator}/>
                     <Grid container>
                         <Grid item md={1}>
-                            <Button className={classes.favourite}>
-                                <FavoriteIcon style={{color: "white", fontSize: 45}}/>
+                            <Button className={classes.favourite} onClick={() => toggleFavourites(pokemonData)}>
+                                <FavoriteIcon style={{color: favChecker(pokemonData) ? "red" : "white", fontSize: 45}}/>
                             </Button>
                         </Grid>
                         <Grid item md={2}>
@@ -95,7 +102,7 @@ const PokemonDetails = () => {
                         {pokemonData.types.map(pokemonType => {
                             const { name } = pokemonType.type
                             return (
-                                <Grid item md={2}>
+                                <Grid item md={2} key={name}>
                                     <Typography className={classes.text}>
                                         Type:
                                         <br />
@@ -114,4 +121,14 @@ const PokemonDetails = () => {
     );
 };
 
-export default PokemonDetails;
+const mapStateToProps = (state) => ({
+    favourites: state.favourites
+});
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleFavourites: (pokemon) => dispatch(toggleFavourite(pokemon))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonDetails);
