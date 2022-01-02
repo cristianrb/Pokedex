@@ -1,17 +1,8 @@
-import { Box, Grid, makeStyles } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import PokemonCard from '../components/PokemonCard';
-
-const useStyles = makeStyles(theme => ({
-    pokemonContainer: {
-        textAlign: 'center',
-        paddingTop: "80px",
-        backgroundColor: 'rgb(68, 68, 68)',
-        height: "100vh",
-        alignContent: "flex-start"
-    }
-}))
+import { useStyles } from './favouritesStyles';
 
 const mapStateToProps = (state) => {
     return {

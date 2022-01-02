@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, CircularProgress, Grid, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -6,44 +6,7 @@ import { useParams } from 'react-router-dom';
 import { POKEMON_API_URL } from '../config';
 import { connect } from 'react-redux';
 import { toggleFavourite } from '../redux/actions';
-
-const useStyles = makeStyles(theme => ({
-    pokedexContainer: {
-        height: '86vh',
-        backgroundColor: 'black',
-        color: 'white',
-        marginTop: '75px',
-        textAlign: 'center',
-        borderRadius: 5,
-        paddingTop: 30
-    },
-    textTitle: {
-        textTransform: "upperCase",
-        fontFamily: "Fantasy"
-    },
-    pokemonImage: {
-        width: "250px",
-        height: "250px"
-    },
-    pokemonInfoContainer: {
-        bottom: 60,
-        position: "absolute",
-        width: "99%",
-    },
-    separator: {
-        height: "0.01mm",
-        width: "95%",
-    },
-    favourite: {
-        height:50,
-        width: 50,
-        marginTop: 15
-    },
-    text: {
-        fontSize:30,
-        textTransform: "capitalize"
-    }
-})) 
+import { useStyles } from './pokemonDetailsStyles';
 
 const PokemonDetails = (props) => {
     const {favourites, toggleFavourites} = props

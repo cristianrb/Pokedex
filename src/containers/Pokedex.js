@@ -1,17 +1,9 @@
-import { Box, CircularProgress, Grid, makeStyles } from '@material-ui/core';
+import { Box, CircularProgress, Grid } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import PokemonCard from '../components/PokemonCard';
 import { IMAGE_API_URL, POKEMON_API_URL } from '../config';
-
-const useStyles = makeStyles(theme => ({
-    pokedexContainer: {
-        textAlign: 'center',
-        padding: "80px 10px 0px 10px",
-        backgroundColor: 'rgb(68, 68, 68)'
-    }
-}))
-
+import {useStyles} from './pokedexStyles'
 
 function Pokedex() {
     const [pokemonData, setPokemonData] = useState(null)
